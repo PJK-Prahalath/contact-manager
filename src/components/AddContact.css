@@ -1,0 +1,169 @@
+/* Container styling */
+.add-contact-container {
+  background: rgba(255, 255, 255, 0.1); /* Soft transparency */
+  border-radius: 15px;
+  padding: 40px 25px;
+  backdrop-filter: blur(12px); /* Glassy blur effect */
+  -webkit-backdrop-filter: blur(12px); /* Safari support */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+  max-width: 450px;
+  margin: 40px auto; /* Centered with ample margin */
+  text-align: center;
+  color: #fff; /* Default text color */
+  position: relative;
+  z-index: 2;
+  overflow: hidden; /* Ensures no overflow */
+  box-sizing: border-box;
+  max-height: 600px; /* Limit the height of the container */
+  overflow-y: auto; /* Enable vertical scrolling */
+}
+
+/* Header (H2) styling */
+.add-contact-container h2 {
+  color: #f0f0f0;
+  font-size: 2rem;
+  margin-bottom: 30px;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3); /* Slight text shadow */
+}
+
+/* Input field styling */
+.add-contact-container input[type="text"],
+.add-contact-container input[type="email"],
+.add-contact-container input[type="file"] {
+  width: 100%; /* Ensures inputs stay within the container */
+  padding: 14px 18px;
+  margin-bottom: 20px;
+  font-size: 1rem;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  background-color: rgba(255, 255, 255, 0.2); /* Transparent but more defined background */
+  color: #fff;
+  transition: background-color 0.3s, border-color 0.3s;
+  box-sizing: border-box; /* Prevents inputs from exceeding the container */
+}
+
+/* Input focus effect */
+.add-contact-container input:focus {
+  outline: none;
+  border-color: #4ba251; /* Green border on focus */
+  background-color: rgba(255, 255, 255, 0.3); /* Brighter on focus */
+}
+
+/* Radio button container */
+.radio-group {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+  gap: 20px;
+}
+
+/* Radio buttons */
+.add-contact-container input[type="radio"] {
+  appearance: none;
+  background-color: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  outline: none;
+  transition: all 0.3s ease;
+  margin-right: 10px;
+  cursor: pointer;
+  position: relative;
+}
+
+.add-contact-container input[type="radio"]:checked {
+  background-color: #4ba251; /* Green when selected */
+  border-color: #4ba251;
+}
+
+.add-contact-container input[type="radio"]::after {
+  content: '';
+  display: block;
+  width: 10px;
+  height: 10px;
+  background-color: #fff;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.add-contact-container input[type="radio"]:checked::after {
+  opacity: 1;
+}
+
+.radio-label {
+  font-size: 1rem;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+/* Webcam container styling */
+.webcam-container {
+  margin-bottom: 20px;
+}
+
+/* Webcam button styling */
+.webcam-container button {
+  padding: 10px 15px;
+  border-radius: 8px;
+  border: none;
+  background-color: rgba(255, 255, 255, 0.2);
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.webcam-container button:hover {
+  background-color: rgba(255, 255, 255, 0.4);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Main button styling */
+.add-contact-container button {
+  background-color: rgba(255, 255, 255, 0.2);
+  border: none;
+  padding: 12px 25px;
+  font-size: 1.2rem;
+  border-radius: 25px;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 15px;
+  display: inline-block;
+}
+
+/* Button hover effect */
+.add-contact-container button:hover {
+  background-color: rgba(255, 255, 255, 0.4);
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Button focus effect */
+.add-contact-container button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(75, 162, 81, 0.5); /* Green focus ring */
+}
+
+/* Adjustments for smaller screens */
+@media (max-width: 768px) {
+  .add-contact-container {
+    padding: 25px;
+  }
+
+  .add-contact-container h2 {
+    font-size: 1.7rem;
+  }
+
+  .add-contact-container button {
+    font-size: 1rem;
+    padding: 10px 20px;
+  }
+}

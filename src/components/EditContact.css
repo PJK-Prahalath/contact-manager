@@ -1,0 +1,143 @@
+/* Container styling */
+.edit-contact-page {
+  margin: 20px;
+  text-align: center;
+  max-height: calc(90vh - 100px); /* Limit height for scrolling */
+  overflow-y: auto; /* Enable vertical scrolling */
+}
+
+.edit-contact-page h1 {
+  color: #f8f9fa;
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 columns */
+  gap: 20px; /* Space between grid items */
+  padding: 10px; /* Padding around the grid */
+}
+
+/* Individual contact card styling */
+.contact-card {
+  display: flex; /* Align items in a row */
+  justify-content: space-between; /* Space between details and image */
+  align-items: center; /* Vertically center items */
+  background: rgba(255, 255, 255, 0.85); /* Slight transparency */
+  border-radius: 15px; /* Rounded corners */
+  padding: 20px; /* Inner padding */
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); /* Shadow for depth */
+  color: #333; /* Dark text color for contrast */
+  transition: transform 0.3s ease; /* Transition for hover effect */
+}
+
+.profile-image {
+  width: 80px; /* Adjust size as needed */
+  height: 80px;
+  border-radius: 50%; /* Round image */
+  object-fit: cover; /* Ensure the image covers the area */
+  margin-left: 20px; /* Space between details and image */
+}
+
+.contact-details {
+  display: flex;
+  flex-direction: column; /* Stack details vertically */
+  flex-grow: 1; /* Allow details to grow and take available space */
+  text-align: left; /* Align text to the left */
+}
+
+.contact-card span {
+  font-weight: bold; /* Make labels bold */
+}
+
+/* Edit button styling */
+.edit-btn {
+  margin-top: 10px; /* Space above button */
+  background-color: #4ba251; /* Button background */
+  border: none; /* Remove default border */
+  padding: 10px 15px; /* Padding inside button */
+  border-radius: 8px; /* Rounded corners */
+  color: white; /* Text color */
+  cursor: pointer; /* Pointer cursor */
+  transition: background-color 0.3s ease; /* Transition for button effects */
+}
+
+.edit-btn:hover {
+  background-color: #3d993f; /* Darker green on hover */
+}
+
+/* Modal styling */
+.modal {
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 15px;
+  padding: 20px; /* Reduced padding for a more compact modal */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  max-width: 500px; /* Set a maximum width for the modal */
+  margin: auto; /* Center the modal horizontally */
+  position: relative; /* Position relative for centering */
+  top: 50%; /* Center vertically */
+  transform: translateY(-50%); /* Offset by half its height */
+}
+
+/* Optional: Make modal responsive */
+.modal h3 {
+  color: #333; /* Dark text color for contrast */
+  margin-bottom: 15px; /* Space below title */
+}
+
+.modal-content {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Input field styling */
+.modal-content input[type="text"],
+.modal-content input[type="email"],
+.modal-content input[type="file"] {
+  width: 100%; /* Ensures inputs stay within the container */
+  padding: 10px;
+  margin-bottom: 15px;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  background-color: rgba(255, 255, 255, 0.9); /* Solid background */
+  color: #333;
+}
+
+/* Button styling inside modal */
+.modal-buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.save-btn, .close-btn {
+  background-color: #4ba251; /* Button background */
+  border: none; /* Remove default border */
+  padding: 10px 15px; /* Padding inside button */
+  border-radius: 8px; /* Rounded corners */
+  color: white; /* Text color */
+  cursor: pointer; /* Pointer cursor */
+  transition: background-color 0.3s ease; /* Transition for button effects */
+}
+
+.save-btn:hover, .close-btn:hover {
+  background-color: #3d993f; /* Darker green on hover */
+}
+
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+  .contact-grid {
+    grid-template-columns: repeat(2, 1fr); /* 2 columns on medium screens */
+  }
+
+  .modal {
+    width: 90%; /* Responsive width for smaller screens */
+  }
+}
+
+@media (max-width: 800px) {
+  .contact-grid {
+    grid-template-columns: 1fr; /* 1 column on smaller screens */
+  }
+}

@@ -1,0 +1,82 @@
+.contact-list {
+  margin: 20px;
+  text-align: center;
+  max-height: calc(90vh - 100px);
+  overflow-y: auto;
+}
+
+.contact-list h3 {
+  color: #f8f9fa;
+  font-size: 2rem;
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 columns */
+  gap: 20px;
+  padding: 10px;
+  margin: 0; /* Remove margin for consistency */
+}
+
+.contact-card {
+  display: flex; /* Align items in a row */
+  align-items: center; /* Vertically center items */
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  color: #333;
+  transition: transform 0.3s ease;
+}
+
+.profile-image {
+  width: 80px; /* Adjust size as needed */
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover; /* Ensure the image covers the area */
+  margin-right: 20px; /* Space between details and image */
+}
+
+.contact-details {
+  display: flex;
+  flex-direction: column; /* Stack details vertically */
+  flex-grow: 1; /* Allow details to grow and take available space */
+}
+
+.contact-card span {
+  font-weight: bold;
+}
+
+/* Button styling */
+.contact-card button {
+  margin-top: 10px;
+  background-color: #4ba251; /* Button background */
+  border: none;
+  padding: 10px 15px;
+  border-radius: 8px;
+  color: white; /* Text color */
+  cursor: pointer; /* Pointer cursor */
+  transition: background-color 0.3s ease; /* Transition for button effects */
+}
+
+.contact-card button:hover {
+  background-color: #3d993f; /* Darker green on hover */
+}
+
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+  .contact-grid {
+    grid-template-columns: repeat(2, 1fr); /* 2 columns on medium screens */
+  }
+}
+
+@media (max-width: 800px) {
+  .contact-grid {
+    grid-template-columns: 1fr; /* 1 column on smaller screens */
+  }
+}
+
+.load {
+  text-align: center;
+  color: white;
+}

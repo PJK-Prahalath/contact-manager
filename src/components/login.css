@@ -1,0 +1,95 @@
+/* Container styling */
+.login-container {
+    background: rgba(255, 255, 255, 0.2); /* Slight transparency */
+    border-radius: 25px; /* Rounded corners */
+    padding: 40px 30px; /* Padding inside the container */
+    backdrop-filter: blur(10px); /* Creates a glass-like effect */
+    -webkit-backdrop-filter: blur(10px); /* Safari support */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); /* Shadow for depth */
+    max-width: 400px; /* Max width of the container */
+    margin: 0 auto; /* Center the container */
+    text-align: center; /* Center align text inside */
+    position: relative; /* Positioning context */
+    z-index: 2; /* Ensure it's above background */
+  }
+  
+  /* Header (H1) styling */
+  .login-container h1 {
+    color: #f8f9fa; /* Light color for contrast */
+    font-size: 2.5rem; /* Font size */
+    margin-bottom: 20px; /* Spacing below header */
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2); /* Text shadow */
+  }
+  
+  /* Label styling */
+  .login-container label {
+    color: #f8f9fa; /* Label color */
+    font-size: 1rem; /* Label font size */
+    margin-bottom: 5px; /* Space below label */
+    display: block; /* Block display to stack label above input */
+  }
+  
+  /* Input field styling */
+  .login-container input {
+    width: 100%; /* Full width inside the container */
+    padding: 12px 15px; /* Padding inside input fields */
+    margin-bottom: 15px; /* Spacing below input fields */
+    font-size: 1rem; /* Font size */
+    border-radius: 8px; /* Rounded corners */
+    border: 1px solid rgba(255, 255, 255, 0.5); /* Light border */
+    background-color: rgba(255, 255, 255, 0.15); /* Input background */
+    color: white; /* Text color */
+    box-sizing: border-box; /* Ensure padding doesn't overflow */
+    transition: all 0.3s ease; /* Transition for input effects */
+  }
+  
+  /* Input focus effect */
+  .login-container input:focus {
+    outline: none; /* Remove outline */
+    border-color: #4ba251; /* Change border color on focus */
+    background-color: rgba(255, 255, 255, 0.3); /* Slightly brighter background on focus */
+  }
+  
+  /* Button styling */
+  .login-container button {
+    background-color: rgba(255, 255, 255, 0.3); /* Button background */
+    border: none; /* Remove default border */
+    padding: 12px 25px; /* Padding inside button */
+    font-size: 1.2rem; /* Font size */
+    border-radius: 30px; /* Rounded corners */
+    color: white; /* Text color */
+    cursor: pointer; /* Pointer cursor */
+    transition: all 0.3s ease; /* Transition for button effects */
+    margin-top: 15px; /* Spacing above button */
+  }
+  
+  /* Button hover effect */
+  .login-container button:hover {
+    background-color: rgba(255, 255, 255, 0.5); /* Darker background on hover */
+    transform: translateY(-3px); /* Slight lift effect on hover */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); /* Shadow effect */
+  }
+  
+  /* New user button styling */
+  .login-container button.signup-button {
+    background: none; /* No background */
+    color: #4ba251; /* Text color for signup */
+    text-decoration: underline; /* Underline text */
+    cursor: pointer; /* Pointer cursor */
+  }
+  
+  /* Adjust for smaller screens */
+  @media (max-width: 768px) {
+    .login-container {
+      padding: 20px 15px; /* Adjust padding */
+    }
+  
+    .login-container h1 {
+      font-size: 2rem; /* Smaller font size for header */
+    }
+  
+    .login-container button {
+      font-size: 1rem; /* Smaller font size for buttons */
+    }
+  }
+  

@@ -1,0 +1,108 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', sans-serif;
+  background: url(https://st4.depositphotos.com/26272052/41908/v/600/depositphotos_419081980-stock-video-glowing-neon-line-telephone-handset.jpg) no-repeat center center fixed;
+  background-size: cover;
+  min-height: 100vh; /* Change from height to min-height */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden; /* Keep overflow hidden on body */
+  perspective: 1000px;
+}
+
+/* Home Container */
+.home-container {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 25px;
+  padding: 60px 50px;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+  color: white;
+  text-align: center;
+  transform: rotateY(15deg);
+  transition: transform 0.5s ease;
+  max-height: 90vh; /* Limit height to avoid overflow */
+  overflow-y: auto; /* Enable vertical scrolling */
+}
+
+.home-container:hover {
+  transform: rotateY(0deg);
+}
+
+/* Heading Styles */
+.home-container h1 {
+  font-size: 3rem;
+  margin-bottom: 40px;
+  color: #f8f9fa;
+  letter-spacing: 1px;
+  text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+/* Button Styles */
+.button-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.home-button {
+  background-color: rgba(255, 255, 255, 0.25);
+  border: none;
+  padding: 16px 30px;
+  border-radius: 40px;
+  font-size: 1.3rem;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.home-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.5);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.3s ease-in-out;
+  z-index: 1;
+}
+
+.home-button:hover::before {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.home-button:hover {
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+  transform: translateY(-6px);
+}
+
+.home-button span {
+  position: relative;
+  z-index: 2;
+}
+
+.home-button:focus {
+  outline: none;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .home-container {
+    padding: 30px 20px;
+  }
+
+  .home-button {
+    font-size: 1.1rem;
+    padding: 12px 25px;
+  }
+}

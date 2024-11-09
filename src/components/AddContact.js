@@ -12,23 +12,29 @@ import './AddContact.css';
 
 function AddContact() {
   const [contact, setContact] = useState({ name: "", phone: "", email: "", image: null });
+  const [category, setCategory] = useState(""); 
+  const [bloodGroup, setBloodGroup] = useState("");  // New state for blood group
   const [useWebcam, setUseWebcam] = useState(false);
   const [isCapturing, setIsCapturing] = useState(false);
   const [isAdding, setIsAdding] = useState(false);
+  const [errors, setErrors] = useState({});
   const navigate = useNavigate();
   const { user } = useAuth();
   const storage = getStorage();
   const webcamRef = useRef(null);
 
   const captureImage = useCallback(() => {
-    setIsCapturing(true); // Start loading animation for capture
+    setIsCapturing(true);
     const imageSrc = webcamRef.current.getScreenshot();
     setContact({ ...contact, image: dataURLtoFile(imageSrc, `webcam-photo-${uuidv4()}.jpg`) });
     toast.success('Photo captured successfully!', {
-      position: "bottom-right",
-      autoClose: 3000,
+      position: 'bottom-right',
+      autoClose: 1000,
+      style:{
+        top:'300px',
+      },
     });
-    setIsCapturing(false); // Stop loading animation after capture
+    setIsCapturing(false);
   }, [contact]);
 
   const dataURLtoFile = (dataUrl, filename) => {
@@ -49,9 +55,25 @@ function AddContact() {
     }
   };
 
+  const validateFields = () => {
+    const newErrors = {};
+    if (!contact.name.trim()) newErrors.name = "Name is required.";
+    if (!contact.phone.trim()) newErrors.phone = "Phone number is required.";
+    if (!contact.email.trim()) newErrors.email = "Email is required.";
+    if (!category) newErrors.category = "Please select a category.";
+    if (!contact.image) newErrors.image = "Please provide an image.";
+    if (!bloodGroup) newErrors.bloodGroup = "Please select a blood group.";  // Add blood group validation
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setIsAdding(true); // Start loading animation for add process
+
+    if (!validateFields()) return; // Validate fields before submission
+
+    setIsAdding(true);
 
     if (!user) {
       console.error("User is not authenticated!");
@@ -72,6 +94,8 @@ function AddContact() {
         phone: contact.phone,
         email: contact.email,
         imageUrl: imageDownloadUrl,
+        category: category,
+        bloodGroup: bloodGroup,  // Include blood group
         uid: user
       });
 
@@ -79,8 +103,8 @@ function AddContact() {
         position: "bottom-right",
         autoClose: 3000,
       });
-      
-      setIsAdding(false); // Stop loading animation after contact added
+
+      setIsAdding(false);
       navigate("/list");
     } catch (error) {
       console.error("Error adding contact: ", error);
@@ -95,21 +119,59 @@ function AddContact() {
         <input
           type="text"
           placeholder="Name"
+          id='in'
           value={contact.name}
           onChange={(e) => setContact({ ...contact, name: e.target.value })}
         />
+        {errors.name && <p className="error">{errors.name}</p>}
+
         <input
           type="text"
           placeholder="Phone"
+          id='in'
           value={contact.phone}
           onChange={(e) => setContact({ ...contact, phone: e.target.value })}
         />
+        {errors.phone && <p className="error">{errors.phone}</p>}
+
         <input
           type="email"
           placeholder="Email"
+          id='in'
           value={contact.email}
           onChange={(e) => setContact({ ...contact, email: e.target.value })}
         />
+        {errors.email && <p className="error">{errors.email}</p>}
+
+        <select
+          className="category-dropdown"
+          value={category}
+          onChange={(e) => setCategory(e.target.value)}
+        >
+          <option value="" id="category-dropdown">Select Category</option>
+          <option value="Friends" id="category-dropdown">Friends</option>
+          <option value="Office" id="category-dropdown">Office</option>
+          <option value="Family" id="category-dropdown">Family</option>
+        </select>
+        {errors.category && <p className="error">{errors.category}</p>}
+
+        {/* Add blood group dropdown */}
+        <select
+          className="category-dropdown"
+          value={bloodGroup}
+          onChange={(e) => setBloodGroup(e.target.value)} // Update blood group state
+        >
+          <option value="" id="category-dropdown">Select Blood Group</option>
+          <option value="A+" id="category-dropdown">A+</option>
+          <option value="A-" id="category-dropdown">A-</option>
+          <option value="B+" id="category-dropdown">B+</option>
+          <option value="B-" id="category-dropdown">B-</option>
+          <option value="O+" id="category-dropdown">O+</option>
+          <option value="O-" id="category-dropdown">O-</option>
+          <option value="AB+" id="category-dropdown">AB+</option>
+          <option value="AB-" id="category-dropdown">AB-</option>
+        </select>
+        {errors.bloodGroup && <p className="error">{errors.bloodGroup}</p>}
 
         <div className="radio-group">
           <label className="radio-label">
@@ -149,13 +211,14 @@ function AddContact() {
             </button>
           </div>
         )}
+        {errors.image && <p className="error">{errors.image}</p>}
 
         <button type="submit" disabled={isAdding}>
           {isAdding ? 'Adding...' : 'Add Contact'}
         </button>
       </form>
 
-      <ToastContainer /> {/* Position notification container */}
+      <ToastContainer />
     </div>
   );
 }

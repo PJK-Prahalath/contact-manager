@@ -98,3 +98,9 @@
         font-size: 1rem; /* Smaller font size for buttons */
     }
 }
+
+.signup-container .error-input {
+    border: 2px solid red !important; /* Red border for error input */
+   
+    /* background-color: #ffe6e6; Light red background for better visibility */
+}

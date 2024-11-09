@@ -17,10 +17,17 @@
   transition: transform 0.3s ease;
 }
 
+.contact-list{
+      height: 300px;
+      padding-bottom: 150px;
+      position: relative;
+      top: 45px;
+}
+
 .profile-image {
-  width: 80px; /* Adjust size as needed */
-  height: 80px;
-  border-radius: 50%;
+  width: 100px; /* Adjust size as needed */
+  height: 150px;
+  border-radius: 15px;
   object-fit: cover;
   margin-left: 20px; /* Space between details and image */
 }
@@ -29,6 +36,14 @@
   display: flex;
   flex-direction: column; /* Stack details vertically */
   flex-grow: 1; /* Allow details to grow and take available space */
+}
+
+#blood{
+  background-color: red;
+  text-align: center;
+  color: ivory;
+  height: 20px;
+  border-radius: 15px;
 }
 
 .contact-card span {
@@ -52,3 +67,13 @@
   text-align: center;
   color: white;
 }
+
+
+
+
+.search-filter{
+  position: relative;
+  top: 40px;
+}
+
+

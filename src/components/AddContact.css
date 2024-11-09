@@ -12,10 +12,11 @@
   color: #fff; /* Default text color */
   position: relative;
   z-index: 2;
-  overflow: hidden; /* Ensures no overflow */
+  overflow: hidden; /*Ensures no overflow*/
   box-sizing: border-box;
-  max-height: 600px; /* Limit the height of the container */
+  max-height: 450px; /* Limit the height of the container */
   overflow-y: auto; /* Enable vertical scrolling */
+  top: 45px;
 }
 
 /* Header (H2) styling */
@@ -166,4 +167,49 @@
     font-size: 1rem;
     padding: 10px 20px;
   }
+}
+
+/* Category dropdown styling */
+.add-contact-container .category-dropdown {
+  width: 100%;
+  padding: 14px 18px;
+  margin-bottom: 20px;
+  font-size: 1rem;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  background-color: rgba(255, 255, 255, 0.2); /* Matches other inputs */
+  /* color: #fff; */
+  transition: background-color 0.3s, border-color 0.3s;
+  box-sizing: border-box;
+}
+
+
+.category-dropdown{
+  color:white
+}
+/* Dropdown focus effect */
+.add-contact-container .category-dropdown:focus {
+  outline: none;
+  border-color: #4ba251;
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+
+/* Error message styling */
+.error {
+  color: #ff4d4d;
+  font-size: 0.9rem;
+  margin-top: -10px;
+  margin-bottom: 10px;
+}
+
+#category-dropdown{
+  color: black;
+}
+
+
+/* Targeting placeholder text */
+#in::placeholder {
+  color: white; /* Replace with your desired color */
+  opacity: 1; /* Ensure full opacity for color */
 }

@@ -17,11 +17,11 @@
   transition: transform 0.3s ease;
 }
 
-.contact-list{
-      height: 300px;
-      padding-bottom: 150px;
-      position: relative;
-      top: 45px;
+.contact-list {
+  height: 300px;
+  padding-bottom: 150px;
+  position: relative;
+  top: 45px;
 }
 
 .profile-image {
@@ -38,7 +38,7 @@
   flex-grow: 1; /* Allow details to grow and take available space */
 }
 
-#blood{
+#blood {
   background-color: red;
   text-align: center;
   color: ivory;
@@ -68,12 +68,57 @@
   color: white;
 }
 
-
-
-
-.search-filter{
+.search-filter {
   position: relative;
   top: 40px;
 }
 
+/* Search Input */
+.search-input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  font-size: 1rem;
+}
 
+/* Category Select */
+.category-select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  font-size: 1rem;
+  appearance: none; /* Remove default arrow on some browsers */
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="10" height="6" viewBox="0 0 10 6"><path fill="%23333" d="M0 0l5 5 5-5z"/></svg>') no-repeat right 10px center; /* Custom arrow */
+  background-color: #fff;
+}
+
+/* Additional responsive adjustments */
+@media (max-width: 600px) {
+  .contact-card {
+    flex-direction: column; /* Stack items vertically on very small screens */
+    align-items: center; /* Center items horizontally */
+  }
+
+  .profile-image {
+    margin-left: 0; /* Remove margin on very small screens */
+    margin-bottom: 10px; /* Add space between image and details */
+  }
+
+  .contact-details {
+    text-align: center; /* Center text on very small screens */
+  }
+
+  .contact-list {
+    height: calc(100vh - 100px); /* Increase height for mobile screens */
+    padding-bottom: 10px; /* Increase bottom padding for mobile screens */
+    top: 20px; /* Reduce gap between contact container and search bar/dropdown */
+  }
+
+  .search-filter {
+    top: 20px; /* Reduce gap between search bar/dropdown and contact container */
+  }
+}

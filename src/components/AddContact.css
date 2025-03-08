@@ -1,61 +1,63 @@
 /* Container styling */
 .add-contact-container {
-  background: rgba(255, 255, 255, 0.1); /* Soft transparency */
-  border-radius: 15px;
-  padding: 40px 25px;
-  backdrop-filter: blur(12px); /* Glassy blur effect */
-  -webkit-backdrop-filter: blur(12px); /* Safari support */
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* Subtle shadow */
-  max-width: 450px;
-  margin: 40px auto; /* Centered with ample margin */
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: clamp(10px, 2vw, 15px); /* Responsive border-radius */
+  padding: clamp(20px, 4vw, 40px) clamp(15px, 3vw, 25px); /* Responsive padding */
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  width: clamp(280px, 90vw, 450px); /* Responsive width */
+  margin: clamp(20px, 5vh, 40px) auto; /* Responsive margin */
   text-align: center;
-  color: #fff; /* Default text color */
+  color: #fff;
   position: relative;
   z-index: 2;
-  overflow: hidden; /*Ensures no overflow*/
   box-sizing: border-box;
-  max-height: 450px; /* Limit the height of the container */
-  overflow-y: auto; /* Enable vertical scrolling */
-  top: 45px;
+  max-height: 90vh; /* Changed to viewport height */
+  overflow-y: auto;
+  top: clamp(20px, 5vh, 45px); /* Responsive top positioning */
 }
 
-/* Header (H2) styling */
+/* Header styling */
 .add-contact-container h2 {
   color: #f0f0f0;
-  font-size: 2rem;
-  margin-bottom: 30px;
-  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3); /* Slight text shadow */
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  margin-bottom: clamp(15px, 3vw, 30px);
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
 }
 
 /* Input field styling */
 .add-contact-container input[type="text"],
 .add-contact-container input[type="email"],
-.add-contact-container input[type="file"] {
-  width: 100%; /* Ensures inputs stay within the container */
-  padding: 14px 18px;
-  margin-bottom: 20px;
-  font-size: 1rem;
-  border-radius: 10px;
+.add-contact-container input[type="file"],
+.add-contact-container .category-dropdown {
+  width: 100%;
+  padding: clamp(10px, 2vw, 14px) clamp(12px, 2.5vw, 18px);
+  margin-bottom: clamp(12px, 2.5vw, 20px);
+  font-size: clamp(0.9rem, 2vw, 1rem);
+  border-radius: clamp(6px, 1.5vw, 10px);
   border: 1px solid rgba(255, 255, 255, 0.4);
-  background-color: rgba(255, 255, 255, 0.2); /* Transparent but more defined background */
+  background-color: rgba(255, 255, 255, 0.2);
   color: #fff;
   transition: background-color 0.3s, border-color 0.3s;
-  box-sizing: border-box; /* Prevents inputs from exceeding the container */
+  box-sizing: border-box;
 }
 
 /* Input focus effect */
-.add-contact-container input:focus {
+.add-contact-container input:focus,
+.add-contact-container .category-dropdown:focus {
   outline: none;
-  border-color: #4ba251; /* Green border on focus */
-  background-color: rgba(255, 255, 255, 0.3); /* Brighter on focus */
+  border-color: #4ba251;
+  background-color: rgba(255, 255, 255, 0.3);
 }
 
 /* Radio button container */
 .radio-group {
   display: flex;
   justify-content: center;
-  margin-bottom: 20px;
-  gap: 20px;
+  margin-bottom: clamp(12px, 2.5vw, 20px);
+  gap: clamp(10px, 2vw, 20px);
+  flex-wrap: wrap; /* Added for small screens */
 }
 
 /* Radio buttons */
@@ -63,26 +65,24 @@
   appearance: none;
   background-color: rgba(255, 255, 255, 0.2);
   border: 1px solid rgba(255, 255, 255, 0.5);
-  width: 20px;
-  height: 20px;
+  width: clamp(16px, 2.5vw, 20px);
+  height: clamp(16px, 2.5vw, 20px);
   border-radius: 50%;
-  outline: none;
   transition: all 0.3s ease;
-  margin-right: 10px;
+  margin-right: clamp(6px, 1vw, 10px);
   cursor: pointer;
   position: relative;
 }
 
 .add-contact-container input[type="radio"]:checked {
-  background-color: #4ba251; /* Green when selected */
+  background-color: #4ba251;
   border-color: #4ba251;
 }
 
 .add-contact-container input[type="radio"]::after {
   content: '';
-  display: block;
-  width: 10px;
-  height: 10px;
+  width: clamp(6px, 1vw, 10px);
+  height: clamp(6px, 1vw, 10px);
   background-color: #fff;
   border-radius: 50%;
   position: absolute;
@@ -98,7 +98,7 @@
 }
 
 .radio-label {
-  font-size: 1rem;
+  font-size: clamp(0.9rem, 2vw, 1rem);
   color: #fff;
   display: flex;
   align-items: center;
@@ -107,13 +107,13 @@
 
 /* Webcam container styling */
 .webcam-container {
-  margin-bottom: 20px;
+  margin-bottom: clamp(12px, 2.5vw, 20px);
 }
 
 /* Webcam button styling */
 .webcam-container button {
-  padding: 10px 15px;
-  border-radius: 8px;
+  padding: clamp(8px, 1.5vw, 10px) clamp(10px, 2vw, 15px);
+  border-radius: clamp(6px, 1vw, 8px);
   border: none;
   background-color: rgba(255, 255, 255, 0.2);
   color: #fff;
@@ -130,86 +130,84 @@
 .add-contact-container button {
   background-color: rgba(255, 255, 255, 0.2);
   border: none;
-  padding: 12px 25px;
-  font-size: 1.2rem;
-  border-radius: 25px;
+  padding: clamp(10px, 1.5vw, 12px) clamp(15px, 2.5vw, 25px);
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  border-radius: clamp(15px, 3vw, 25px);
   color: white;
   cursor: pointer;
   transition: all 0.3s ease;
-  margin-top: 15px;
+  margin-top: clamp(10px, 2vw, 15px);
   display: inline-block;
+  width: auto; /* Prevents stretching on mobile */
 }
 
-/* Button hover effect */
 .add-contact-container button:hover {
   background-color: rgba(255, 255, 255, 0.4);
   transform: translateY(-3px);
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
-/* Button focus effect */
 .add-contact-container button:focus {
   outline: none;
-  box-shadow: 0 0 0 3px rgba(75, 162, 81, 0.5); /* Green focus ring */
+  box-shadow: 0 0 0 3px rgba(75, 162, 81, 0.5);
 }
 
-/* Adjustments for smaller screens */
-@media (max-width: 768px) {
-  .add-contact-container {
-    padding: 25px;
-  }
-
-  .add-contact-container h2 {
-    font-size: 1.7rem;
-  }
-
-  .add-contact-container button {
-    font-size: 1rem;
-    padding: 10px 20px;
-  }
+/* Specific element styling */
+.category-dropdown {
+  color: white;
 }
 
-/* Category dropdown styling */
-.add-contact-container .category-dropdown {
-  width: 100%;
-  padding: 14px 18px;
-  margin-bottom: 20px;
-  font-size: 1rem;
-  border-radius: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.4);
-  background-color: rgba(255, 255, 255, 0.2); /* Matches other inputs */
-  /* color: #fff; */
-  transition: background-color 0.3s, border-color 0.3s;
-  box-sizing: border-box;
-}
-
-
-.category-dropdown{
-  color:white
-}
-/* Dropdown focus effect */
-.add-contact-container .category-dropdown:focus {
-  outline: none;
-  border-color: #4ba251;
-  background-color: rgba(255, 255, 255, 0.3);
-}
-
-
-/* Error message styling */
-.error {
-  color: #ff4d4d;
-  font-size: 0.9rem;
-  margin-top: -10px;
-  margin-bottom: 10px;
-}
-
-#category-dropdown{
+#category-dropdown {
   color: black;
 }
 
-
-/* Targeting placeholder text */
 #in::placeholder {
-  color: white; /* Replace with your desired color */
-  opacity: 1; /* Ensure full opacity for color */
+  color: white;
+  opacity: 1;
+}
+
+.error {
+  color: #ff4d4d;
+  font-size: clamp(0.8rem, 1.5vw, 0.9rem);
+  margin-top: clamp(-8px, -1vw, -10px);
+  margin-bottom: clamp(8px, 1vw, 10px);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .add-contact-container {
+    top: 20px;
+  }
+  
+  .radio-group {
+    justify-content: space-around;
+  }
+  
+  .add-contact-container button:hover {
+    transform: none; /* Disable transform on mobile */
+  }
+}
+
+@media (max-width: 480px) {
+  .add-contact-container {
+    width: 95vw;
+    margin: 15px auto;
+    padding: 15px;
+  }
+  
+  .radio-group {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .add-contact-container input[type="radio"] {
+    margin-right: 8px;
+  }
+}
+
+@media (min-height: 800px) {
+  .add-contact-container {
+    max-height: 85vh;
+  }
 }

@@ -1,41 +1,77 @@
 .contact-grid {
-  display: grid; /* Use CSS Grid */
-  grid-template-columns: repeat(3, 1fr); /* 3 columns */
-  gap: 20px; /* Space between grid items */
-  padding: 10px; /* Padding around the grid */
-  margin: 0; /* Remove margin for consistency */
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  padding: 10px;
+  margin: 0;
 }
 
 .contact-card {
-  display: flex; /* Align items in a row */
-  align-items: center; /* Vertically center items */
+  display: flex;
+  align-items: center;
   background: rgba(255, 255, 255, 0.85);
   border-radius: 15px;
-  padding: 20px;
+  padding: 20px; /* Original size */
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
   color: #333;
   transition: transform 0.3s ease;
 }
 
 .contact-list {
-  height: 300px;
+  height: 500px; /* Increased from 300px for a larger container */
   padding-bottom: 150px;
   position: relative;
   top: 45px;
+  overflow-y: auto;
+  width: 100%;
+  max-width: 1600px; /* Increased from 1400px for a wider container */
+  margin: 0 auto;
+  box-sizing: border-box;
 }
 
 .profile-image {
-  width: 100px; /* Adjust size as needed */
-  height: 150px;
+  width: 100px; /* Original size */
+  height: 150px; /* Original size */
   border-radius: 15px;
   object-fit: cover;
-  margin-left: 20px; /* Space between details and image */
+  margin-left: 20px;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.profile-image:hover {
+  opacity: 0.9;
+}
+
+/* Image Overlay */
+.image-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.9);
+  z-index: 1000;
+  justify-content: center;
+  align-items: center;
+}
+
+.image-overlay.active {
+  display: flex;
+}
+
+.image-overlay img {
+  max-width: 90vw;
+  max-height: 90vh;
+  object-fit: contain;
+  border-radius: 10px;
 }
 
 .contact-details {
   display: flex;
-  flex-direction: column; /* Stack details vertically */
-  flex-grow: 1; /* Allow details to grow and take available space */
+  flex-direction: column;
+  flex-grow: 1;
 }
 
 #blood {
@@ -44,23 +80,12 @@
   color: ivory;
   height: 20px;
   border-radius: 15px;
+  padding: 0 0.5rem;
+  line-height: 20px;
 }
 
 .contact-card span {
   font-weight: bold;
-}
-
-/* Responsive adjustments */
-@media (max-width: 1200px) {
-  .contact-grid {
-    grid-template-columns: repeat(2, 1fr); /* 2 columns on medium screens */
-  }
-}
-
-@media (max-width: 800px) {
-  .contact-grid {
-    grid-template-columns: 1fr; /* 1 column on smaller screens */
-  }
 }
 
 .load {
@@ -71,9 +96,13 @@
 .search-filter {
   position: relative;
   top: 40px;
+  max-width: 600px;
+  margin: 0 auto;
+  width: 100%;
+  padding: 0 10px;
+  box-sizing: border-box;
 }
 
-/* Search Input */
 .search-input {
   width: 100%;
   padding: 10px;
@@ -81,9 +110,9 @@
   border-radius: 5px;
   margin-bottom: 10px;
   font-size: 1rem;
+  box-sizing: border-box;
 }
 
-/* Category Select */
 .category-select {
   width: 100%;
   padding: 10px;
@@ -91,34 +120,65 @@
   border-radius: 5px;
   margin-bottom: 10px;
   font-size: 1rem;
-  appearance: none; /* Remove default arrow on some browsers */
-  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="10" height="6" viewBox="0 0 10 6"><path fill="%23333" d="M0 0l5 5 5-5z"/></svg>') no-repeat right 10px center; /* Custom arrow */
+  appearance: none;
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="10" height="6" viewBox="0 0 10 6"><path fill="%23333" d="M0 0l5 5 5-5z"/></svg>') no-repeat right 10px center;
   background-color: #fff;
+  box-sizing: border-box;
 }
 
-/* Additional responsive adjustments */
+/* Responsive Adjustments */
+@media (max-width: 1200px) {
+  .contact-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 800px) {
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 @media (max-width: 600px) {
   .contact-card {
-    flex-direction: column; /* Stack items vertically on very small screens */
-    align-items: center; /* Center items horizontally */
+    flex-direction: column;
+    align-items: center;
+    padding: 15px; /* Slightly reduced for mobile */
   }
 
   .profile-image {
-    margin-left: 0; /* Remove margin on very small screens */
-    margin-bottom: 10px; /* Add space between image and details */
+    margin-left: 0;
+    margin-bottom: 10px;
+    width: 80px; /* Adjusted for mobile */
+    height: 120px;
   }
 
   .contact-details {
-    text-align: center; /* Center text on very small screens */
+    text-align: center;
+    padding: 0 10px;
   }
 
   .contact-list {
-    height: calc(100vh - 100px); /* Increase height for mobile screens */
-    padding-bottom: 10px; /* Increase bottom padding for mobile screens */
-    top: 20px; /* Reduce gap between contact container and search bar/dropdown */
+    height: calc(100vh - 100px); /* Your original mobile adjustment */
+    padding-bottom: 10px;
+    top: 20px;
+    max-width: 100%; /* Full width on mobile */
   }
 
   .search-filter {
-    top: 20px; /* Reduce gap between search bar/dropdown and contact container */
+    top: 20px;
+    padding: 0 5px;
+  }
+
+  #blood {
+    width: 60px;
+    margin: 0 auto;
+    display: block;
+  }
+}
+
+@media (min-width: 1400px) {
+  .contact-card {
+    padding: 25px; /* Slightly larger for big screens */
   }
 }

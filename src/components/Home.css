@@ -4,19 +4,19 @@ body {
   font-family: 'Roboto', sans-serif;
   background: url(https://st4.depositphotos.com/26272052/41908/v/600/depositphotos_419081980-stock-video-glowing-neon-line-telephone-handset.jpg) no-repeat center center fixed;
   background-size: cover;
-  min-height: 100vh; /* Change from height to min-height */
+  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  overflow: hidden; /* Keep overflow hidden on body */
+  overflow-x: hidden; /* Changed to x-only to allow vertical scrolling */
   perspective: 1000px;
 }
 
 /* Home Container */
 .home-container {
   background: rgba(255, 255, 255, 0.15);
-  border-radius: 25px;
-  padding: 60px 50px;
+  border-radius: clamp(15px, 3vw, 25px); /* Scales between 15px and 25px */
+  padding: clamp(20px, 5vw, 60px) clamp(15px, 4vw, 50px); /* Responsive padding */
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
@@ -24,8 +24,10 @@ body {
   text-align: center;
   transform: rotateY(15deg);
   transition: transform 0.5s ease;
-  max-height: 90vh; /* Limit height to avoid overflow */
-  overflow-y: auto; /* Enable vertical scrolling */
+  width: clamp(280px, 90vw, 800px); /* Responsive width */
+  max-height: 90vh;
+  overflow-y: auto;
+  margin: 1rem; /* Added margin for small screens */
 }
 
 .home-container:hover {
@@ -34,8 +36,8 @@ body {
 
 /* Heading Styles */
 .home-container h1 {
-  font-size: 3rem;
-  margin-bottom: 40px;
+  font-size: clamp(1.5rem, 5vw, 3rem); /* Scales between 1.5rem and 3rem */
+  margin-bottom: clamp(20px, 4vw, 40px);
   color: #f8f9fa;
   letter-spacing: 1px;
   text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
@@ -45,21 +47,25 @@ body {
 .button-container {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: clamp(10px, 2vw, 20px); /* Responsive gap */
+  width: 100%;
+  max-width: 400px; /* Added max-width for better control */
+  margin: 0 auto; /* Center buttons */
 }
 
 .home-button {
   background-color: rgba(255, 255, 255, 0.25);
   border: none;
-  padding: 16px 30px;
-  border-radius: 40px;
-  font-size: 1.3rem;
+  padding: clamp(10px, 2vw, 16px) clamp(20px, 3vw, 30px);
+  border-radius: clamp(20px, 5vw, 40px);
+  font-size: clamp(1rem, 2.5vw, 1.3rem);
   color: white;
   cursor: pointer;
   transition: all 0.3s ease;
   box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
   position: relative;
   overflow: hidden;
+  width: 100%; /* Full width buttons */
 }
 
 .home-button::before {
@@ -96,13 +102,41 @@ body {
 }
 
 /* Responsive Styles */
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .home-container {
-    padding: 30px 20px;
+    transform: rotateY(0deg); /* Remove 3D effect on smaller screens */
+  }
+  
+  .home-container:hover {
+    transform: rotateY(0deg);
+  }
+}
+
+@media (max-width: 768px) {
+  body {
+    align-items: flex-start; /* Allow content to start from top on mobile */
+    padding-top: 1rem;
   }
 
-  .home-button {
-    font-size: 1.1rem;
-    padding: 12px 25px;
+  .home-container {
+    width: 90vw;
+    margin: 0.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .home-container h1 {
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5); /* Reduced shadow for readability */
+  }
+
+  .home-button:hover {
+    transform: none; /* Remove hover transform on mobile */
+  }
+}
+
+/* Ensure content stays visible on very tall screens */
+@media (min-height: 1000px) {
+  .home-container {
+    margin: 2rem 1rem;
   }
 }

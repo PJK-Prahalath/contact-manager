@@ -11,8 +11,8 @@ const ContactDetails = () => {
   const [loading, setLoading] = useState(true);
   const [category, setCategory] = useState('All');
   const [searchQuery, setSearchQuery] = useState('');
+  const [selectedImage, setSelectedImage] = useState(null);
 
-  // Fetch contacts from Firestore
   useEffect(() => {
     const fetchContacts = async () => {
       if (!user) return;
@@ -27,7 +27,7 @@ const ContactDetails = () => {
         }));
 
         setContacts(contactList);
-        setFilteredContacts(contactList); // Initially, all contacts are shown
+        setFilteredContacts(contactList);
       } catch (error) {
         console.error("Error fetching contacts:", error);
       } finally {
@@ -38,30 +38,24 @@ const ContactDetails = () => {
     fetchContacts();
   }, [user]);
 
-  // Filter contacts based on category and search query
   useEffect(() => {
     const filtered = contacts.filter((contact) => {
       const matchesCategory = category === 'All' || contact.category === category;
       const matchesSearch =
         contact.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
         contact.email.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        contact.phone.toLowerCase().includes(searchQuery.toLowerCase())||
-        (contact.bloodGroup && contact.bloodGroup.toLowerCase().includes(searchQuery.toLowerCase())); 
+        contact.phone.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        (contact.bloodGroup && contact.bloodGroup.toLowerCase().includes(searchQuery.toLowerCase()));
       return matchesCategory && matchesSearch;
     });
 
-    setFilteredContacts(filtered); // Update filtered contacts
+    setFilteredContacts(filtered);
   }, [contacts, category, searchQuery]);
 
-  // Update search query
-  const handleSearchChange = (e) => {
-    setSearchQuery(e.target.value);
-  };
-
-  // Update category
-  const handleCategoryChange = (e) => {
-    setCategory(e.target.value);
-  };
+  const handleSearchChange = (e) => setSearchQuery(e.target.value);
+  const handleCategoryChange = (e) => setCategory(e.target.value);
+  const handleImageClick = (imageUrl) => setSelectedImage(imageUrl);
+  const closeOverlay = () => setSelectedImage(null);
 
   if (loading) {
     return <p className="load">Loading contact details...</p>;
@@ -69,49 +63,54 @@ const ContactDetails = () => {
 
   return (
     <div>
-      
-      <div className='title-div'>
-
-      {/* Search and Category Filter */}
-      <div className="search-filter">
-        <input
-          type="text"
-          placeholder="Search by name, email, phone, bloodGroup..."
-          value={searchQuery}
-          onChange={handleSearchChange} // Update search query
-          className="search-input"
-        />
-
-        <select value={category} onChange={handleCategoryChange} className="category-select">
-          <option value="All">All</option>
-          <option value="Friends">Friends</option>
-          <option value="Office">Office</option>
-          <option value="Family">Family</option>
-        </select>
+      <div className="title-div">
+        <div className="search-filter">
+          <input
+            type="text"
+            placeholder="Search by name, email, phone, bloodGroup..."
+            value={searchQuery}
+            onChange={handleSearchChange}
+            className="search-input"
+  />          <select value={category} onChange={handleCategoryChange} className="category-select">
+            <option value="All">All</option>
+            <option value="Friends">Friends</option>
+            <option value="Office">Office</option>
+            <option value="Family">Family</option>
+          </select>
+        </div>
       </div>
-      </div>
-      <div className='contact-list'>
-      {/* Conditionally render contacts or "no contacts" message */}
-      {filteredContacts.length === 0 ? (
-        <p style={{color:'white'}}>No contacts found.</p>
-      ) : (
-        <div className="contact-grid">
-          {filteredContacts.map((contact) => (
-            <div key={contact.id} className="contact-card">
-              <div className="contact-details">
-                <p><span>Name:</span> {contact.name}</p>
-                <p><span>Phone:</span> {contact.phone}</p>
-                <p><span>Email:</span> {contact.email}</p>
-                <p id='blood'>{contact.bloodGroup}</p>
+      <div className="contact-list">
+        {filteredContacts.length === 0 ? (
+          <p style={{ color: 'white' }}>No contacts found.</p>
+        ) : (
+          <div className="contact-grid">
+            {filteredContacts.map((contact) => (
+              <div key={contact.id} className="contact-card">
+                <div className="contact-details">
+                  <p><span>Name:</span> {contact.name}</p>
+                  <p><span>Phone:</span> {contact.phone}</p>
+                  <p><span>Email:</span> {contact.email}</p>
+                  <p id="blood">{contact.bloodGroup || 'N/A'}</p>
+                </div>
+                {contact.imageUrl && (
+                  <img
+                    src={contact.imageUrl}
+                    alt={`${contact.name}'s profile`}
+                    className="profile-image"
+                    onClick={() => handleImageClick(contact.imageUrl)}
+                  />
+                )}
               </div>
-              {contact.imageUrl && (
-                <img src={contact.imageUrl} alt={`${contact.name}'s profile`} className="profile-image" />
-              )}
-            </div>
-          ))}
+            ))}
+          </div>
+        )}
+      </div>
+
+      {selectedImage && (
+        <div className="image-overlay active" onClick={closeOverlay}>
+          <img src={selectedImage} alt="Full-screen profile" />
         </div>
       )}
-      </div>
     </div>
   );
 };
